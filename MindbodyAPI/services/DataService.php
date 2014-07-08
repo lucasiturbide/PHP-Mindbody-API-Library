@@ -25,6 +25,9 @@ class DataService extends \MindbodyAPI\MindbodyClient {
 		'SelectAggregateDataCSVRequest' => 'MindbodyAPI\structures\SelectAggregateDataCSVRequest',
 		'SelectAggregateDataCSVResponse' => 'MindbodyAPI\structures\SelectAggregateDataCSVResponse',
 		'SelectAggregateDataCSVResult' => 'MindbodyAPI\structures\SelectAggregateDataCSVResult',
+		'FunctionDataCSV' => 'MindbodyAPI\structures\FunctionDataCSV',
+		'FunctionDataCSVResponse' => 'MindbodyAPI\structures\FunctionDataCSVResponse',
+		'FunctionDataXMLRequest' => 'MindbodyAPI\structures\FunctionDataXMLRequest',
 		'Row' => 'MindbodyAPI\structures\Row',
 		'RecordSet' => 'MindbodyAPI\structures\RecordSet',
 	);
@@ -88,6 +91,15 @@ class DataService extends \MindbodyAPI\MindbodyClient {
 	 */
 	public function SelectAggregateDataCSV(structures\SelectAggregateDataCSV $parameters) {
 		return $this->__soapCall('SelectAggregateDataCSV', array(
+			$parameters
+		) , array(
+			'uri' => 'http://clients.mindbodyonline.com/api/0_5',
+			'soapaction' => ''
+		));
+	}
+	
+	public function FunctionDataCSV(structures\FunctionDataCSV $parameters){
+		return $this->__soapCall('FunctionDataCSV', array(
 			$parameters
 		) , array(
 			'uri' => 'http://clients.mindbodyonline.com/api/0_5',
