@@ -4,10 +4,10 @@ PHP Mindbody API Library
 ========================
 
 This library provides a set of PHP classes which allow one to interface with
-the [Mindbody SOAP API](https://developers.mindbodyonline.com/) in a fairly simple
+the [Mindbody SOAP API](https://developers.mindbodyonline.com/Resources/FAQs) in a fairly simple
 way.
 
-The API's main documentation is available through the [API portal](http://api.mindbodyonline.com/).
+The API's main documentation is available through the [API portal](https://developers.mindbodyonline.com/).
 
 Preparation
 -----------
@@ -18,7 +18,7 @@ Before you can make use of this library, you will need to get a set of
 As well, you will need to know your Site ID.  
 Your API credentials must be authorized for your Site ID using the SiteService::GetActivationCode method.
 
-The API sandbox information can be found via the [API FAQ](https://support.mindbodyonline.com/entries/22021573-api-faq#Howcanitest).
+The API sandbox information can be found via the [API FAQ](https://developers.mindbodyonline.com/Resources/FAQs).
 
 This library will of course require the SOAP extension be installed and
 enabled in your PHP installation, and allow_url_fopen must be enabled.
