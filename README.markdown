@@ -4,7 +4,7 @@ PHP Mindbody API Library
 ========================
 
 This library provides a set of PHP classes which allow one to interface with
-the [Mindbody SOAP API](http://www.mindbodyonline.com/api) in a fairly simple
+the [Mindbody SOAP API](https://developers.mindbodyonline.com/) in a fairly simple
 way.
 
 The API's main documentation is available through the [API portal](http://api.mindbodyonline.com/).
@@ -31,10 +31,10 @@ Installation
 -----------
 
 The most simple method of installation is via [Composer](http://getcomposer.org/). Simply add the
-[thefrozenfire/mindbodyapi](https://packagist.org/packages/thefrozenfire/mindbodyapi) package as a requirement and update
+[lucasiturbide/mindbody-soap-api](https://packagist.org/packages/lucasiturbide/mindbody-soap-api) package as a requirement and update
 your project.
 
-Alternatively, you can simply clone this project from [GitHub](https://github.com/TheFrozenFire/PHP-Mindbody-API-Library).
+Alternatively, you can simply clone this project from [GitHub](https://github.com/lucasiturbide/PHP-Mindbody-API-Library).
 
 This library supports PSR-0 autoloading, though you need to register the MindbodyAPI namespace as being in the root
 of the library, as opposed to vendor-prefixed.
@@ -56,7 +56,7 @@ $credentials = $service::credentials(
 	"YourSourceName",
 	"YourPassword",
 	array(
-		1234 // Your Site ID(s)
+		-99 // Your Site ID(s)
 	)
 );
 
