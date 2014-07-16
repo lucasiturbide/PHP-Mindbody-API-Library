@@ -1,3 +1,5 @@
+This is a fork from https://github.com/TheFrozenFire/PHP-Mindbody-API-Library
+
 PHP Mindbody API Library
 ========================
 
