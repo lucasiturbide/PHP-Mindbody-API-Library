@@ -101,15 +101,15 @@ class SaleService extends \MindbodyAPI\MindbodyClient {
 		'GetCustomPaymentMethodsResponse' => 'MindbodyAPI\structures\GetCustomPaymentMethodsResponse',
 		'GetCustomPaymentMethodsResult' => 'MindbodyAPI\structures\GetCustomPaymentMethodsResult',
 	);
-	public function __construct($wsdl = "https://api.mindbodyonline.com/0_5/SaleService.asmx?WSDL", $options = array()) {
+	public function __construct($wsdl = "/0_5/SaleService.asmx?WSDL", $options = array()) {
 		foreach (self::$classmap as $key => $value) {
 			if (!isset($options['classmap'][$key])) {
 				$options['classmap'][$key] = $value;
 			}
 		}
 		if (!ini_get('user_agent')) ini_set('user_agent', 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US; rv:1.9.2.19) Gecko/20110707 Firefox/3.6.19');
-		if (!isset($options['location'])) $options['location'] = 'https://api.mindbodyonline.com/0_5/SaleService.asmx';
-		parent::__construct($wsdl, $options);
+		if (!isset($options['location'])) $options['location'] = self::$server . '/0_5/SaleService.asmx';
+		parent::__construct(self::$server . $wsdl, $options);
 	}
 	/**
 	 * Gets a list of card types that the site accepts.

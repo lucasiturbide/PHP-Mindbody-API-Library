@@ -2,11 +2,12 @@
 namespace MindbodyAPI;
 class MindbodyClient extends \SoapClient {
 	public static $classmap = array();
+	public static $server = "https://api.mindbodyonline.com";
 
 	public static function service($name) {
 		$class = "MindbodyAPI\\services\\{$name}";
 		
-		return new $class;
+		return new $class();
 	}
 
 	public static function request($type, structures\SourceCredentials $sourceCredentials = null, structures\UserCredentials $userCredentials = null) {
