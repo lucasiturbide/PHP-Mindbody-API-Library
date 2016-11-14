@@ -1,6 +1,9 @@
 <?php
+
 namespace MindbodyAPI\structures;
+
 class Availability {
+
 	public $ID; // int
 	public $Staff; // Staff
 	public $SessionType; // SessionType
@@ -9,6 +12,7 @@ class Availability {
 	public $EndDateTime; // dateTime
 	public $BookableEndDateTime; // dateTime
 	public $Location; // Location
-	
+
 }
+
 ?>

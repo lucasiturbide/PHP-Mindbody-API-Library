@@ -1,6 +1,9 @@
 <?php
+
 namespace MindbodyAPI\structures;
+
 class FinderUser {
+
 	public $Email; // string
 	public $Password; // string
 	public $ChangePasswordNeeded; // boolean
@@ -10,6 +13,7 @@ class FinderUser {
 	public $Phone; // string
 	public $Action; // ActionCode
 	public $CreditCards; // ArrayOfClientCreditCard
-	
+
 }
+
 ?>

@@ -1,6 +1,9 @@
 <?php
+
 namespace MindbodyAPI\structures;
+
 class Site {
+
 	public $ID; // int
 	public $Name; // string
 	public $Description; // string
@@ -14,6 +17,13 @@ class Site {
 	public $AcceptsMasterCard; // boolean
 	public $AcceptsAmericanExpress; // boolean
 	public $ContactEmail; // string
-	
+	public $ESA; // boolean
+	public $TotalWOD; // boolean
+	public $TaxInclusivePrices; // boolean
+	public $SMSPackageEnabled; // boolean
+	public $AllowsDashboardAccess; // boolean
+	public $PricingLevel; // string
+
 }
+
 ?>

@@ -1,6 +1,9 @@
 <?php
+
 namespace MindbodyAPI\structures;
+
 class Location {
+
 	public $BusinessID; // int
 	public $SiteID; // int
 	public $BusinessDescription; // string
@@ -31,6 +34,7 @@ class Location {
 	public $Description; // string
 	public $HasSite; // boolean
 	public $CanBook; // boolean
-	
+
 }
+
 ?>

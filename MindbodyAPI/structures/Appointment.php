@@ -1,8 +1,12 @@
 <?php
+
 namespace MindbodyAPI\structures;
+
 class Appointment {
+
 	public $GenderPreference; // string
 	public $Duration; // int
+	public $ProviderID; // string
 	public $Action; // ActionCode
 	public $ID; // long
 	public $Status; // AppointmentStatus
@@ -18,6 +22,7 @@ class Appointment {
 	public $FirstAppointment; // boolean
 	public $ClientService; // ClientService
 	public $Resources; // ArrayOfResource
-	
+
 }
+
 ?>

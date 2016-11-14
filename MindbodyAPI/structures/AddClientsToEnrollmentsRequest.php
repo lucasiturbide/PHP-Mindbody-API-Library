@@ -1,6 +1,9 @@
 <?php
+
 namespace MindbodyAPI\structures;
+
 class AddClientsToEnrollmentsRequest {
+
 	public $ClientIDs; // ArrayOfString
 	public $ClassScheduleIDs; // ArrayOfInt
 	public $CourseIDs; // ArrayOfInt
@@ -9,6 +12,8 @@ class AddClientsToEnrollmentsRequest {
 	public $Test; // boolean
 	public $SendEmail; // boolean
 	public $Waitlist; // boolean
-	
+	public $WaitlistEntryID; // int
+
 }
+
 ?>

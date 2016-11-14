@@ -1,6 +1,9 @@
 <?php
+
 namespace MindbodyAPI\structures;
+
 class Visit {
+
 	public $ID; // long
 	public $ClassID; // int
 	public $AppointmentID; // int
@@ -15,8 +18,10 @@ class Visit {
 	public $WebSignup; // boolean
 	public $Action; // ActionCode
 	public $SignedIn; // boolean
+	public $AppointmentStatus; // string
 	public $MakeUp; // boolean
 	public $Service; // ClientService
-	
+
 }
+
 ?>

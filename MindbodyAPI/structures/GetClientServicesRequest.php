@@ -1,6 +1,9 @@
 <?php
+
 namespace MindbodyAPI\structures;
+
 class GetClientServicesRequest {
+
 	public $ClientID; // string
 	public $ClassID; // int
 	public $ProgramIDs; // ArrayOfInt
@@ -10,6 +13,7 @@ class GetClientServicesRequest {
 	public $StartDate; // dateTime
 	public $EndDate; // dateTime
 	public $ShowActiveOnly; // boolean
-	
+
 }
+
 ?>

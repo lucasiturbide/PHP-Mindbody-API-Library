@@ -1,6 +1,9 @@
 <?php
+
 namespace MindbodyAPI\structures;
+
 class FinderAppointment {
+
 	public $Site; // Site
 	public $Organization; // Organization
 	public $Location; // Location
@@ -12,6 +15,7 @@ class FinderAppointment {
 	public $TaxRate; // double
 	public $TaxAmount; // double
 	public $Featured; // boolean
-	
+
 }
+
 ?>

@@ -1,6 +1,9 @@
 <?php
+
 namespace MindbodyAPI\structures;
+
 class FinderCheckoutShoppingCartRequest {
+
 	public $Test; // boolean
 	public $NoClientEmail; // boolean
 	public $MBFClassID; // int
@@ -13,6 +16,7 @@ class FinderCheckoutShoppingCartRequest {
 	public $SaveCCInfo; // boolean
 	public $SpaFinderWellnessCard; // SpaFinderWellnessCard
 	public $PaymentInfo; // PaymentInfo
-	
+
 }
+
 ?>

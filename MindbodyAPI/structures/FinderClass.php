@@ -1,6 +1,9 @@
 <?php
+
 namespace MindbodyAPI\structures;
+
 class FinderClass {
+
 	public $Organization; // Organization
 	public $Site; // Site
 	public $SessionType; // FinderSessionType
@@ -19,6 +22,7 @@ class FinderClass {
 	public $StartDateTime; // dateTime
 	public $EndDateTime; // dateTime
 	public $Staff; // Staff
-	
+
 }
+
 ?>

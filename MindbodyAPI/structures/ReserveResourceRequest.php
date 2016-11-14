@@ -1,6 +1,9 @@
 <?php
+
 namespace MindbodyAPI\structures;
+
 class ReserveResourceRequest {
+
 	public $ResourceID; // int
 	public $ClientID; // int
 	public $StaffID; // int
@@ -9,6 +12,7 @@ class ReserveResourceRequest {
 	public $LocationID; // int
 	public $ProgramID; // int
 	public $Notes; // string
-	
+
 }
+
 ?>

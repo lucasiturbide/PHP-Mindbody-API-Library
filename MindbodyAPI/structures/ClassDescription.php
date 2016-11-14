@@ -1,6 +1,9 @@
 <?php
+
 namespace MindbodyAPI\structures;
+
 class ClassDescription {
+
 	public $ImageURL; // string
 	public $Level; // Level
 	public $Action; // ActionCode
@@ -12,6 +15,8 @@ class ClassDescription {
 	public $LastUpdated; // dateTime
 	public $Program; // Program
 	public $SessionType; // SessionType
-	
+	public $Active; // boolean
+
 }
+
 ?>

@@ -1,6 +1,9 @@
 <?php
+
 namespace MindbodyAPI\structures;
+
 class GetSessionTypesWithinRadiusRequest {
+
 	public $SearchLatitude; // double
 	public $SearchLongitude; // double
 	public $SearchRadius; // double
@@ -11,6 +14,7 @@ class GetSessionTypesWithinRadiusRequest {
 	public $SearchDomain; // string
 	public $IPAddress; // string
 	public $SessionsPerLocation; // int
-	
+
 }
+
 ?>

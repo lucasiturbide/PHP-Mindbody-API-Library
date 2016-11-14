@@ -1,6 +1,9 @@
 <?php
+
 namespace MindbodyAPI\structures;
+
 class ScheduleType {
+
 	const All = 'All';
 	const DropIn = 'DropIn';
 	const Enrollment = 'Enrollment';
@@ -8,5 +11,7 @@ class ScheduleType {
 	const Resource = 'Resource';
 	const Media = 'Media';
 	const Arrival = 'Arrival';
+
 }
+
 ?>

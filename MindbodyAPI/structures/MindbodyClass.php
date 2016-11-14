@@ -1,6 +1,9 @@
 <?php
+
 namespace MindbodyAPI\structures;
+
 class MindbodyClass {
+
 	public $ClassScheduleID; // int
 	public $Visits; // ArrayOfVisit
 	public $Clients; // ArrayOfClient
@@ -25,6 +28,7 @@ class MindbodyClass {
 	public $EndDateTime; // dateTime
 	public $ClassDescription; // ClassDescription
 	public $Staff; // Staff
-	
+
 }
+
 ?>

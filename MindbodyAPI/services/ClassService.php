@@ -1,7 +1,10 @@
 <?php
 namespace MindbodyAPI\services;
+
 use MindbodyAPI\structures;
+
 class ClassService extends \MindbodyAPI\MindbodyClient {
+
 	public static $classmap = array(
 		'GetClasses' => 'MindbodyAPI\structures\GetClasses',
 		'GetClassesRequest' => 'MindbodyAPI\structures\GetClassesRequest',
@@ -24,6 +27,7 @@ class ClassService extends \MindbodyAPI\MindbodyClient {
 		'SessionType' => 'MindbodyAPI\structures\SessionType',
 		'Resource' => 'MindbodyAPI\structures\Resource',
 		'ClientService' => 'MindbodyAPI\structures\ClientService',
+		'SalesRep' => 'MindbodyAPI\structures\SalesRep',
 		'Rep' => 'MindbodyAPI\structures\Rep',
 		'Staff' => 'MindbodyAPI\structures\Staff',
 		'Appointment' => 'MindbodyAPI\structures\Appointment',
@@ -39,6 +43,9 @@ class ClassService extends \MindbodyAPI\MindbodyClient {
 		'ClientRelationship' => 'MindbodyAPI\structures\ClientRelationship',
 		'Relationship' => 'MindbodyAPI\structures\Relationship',
 		'CustomClientField' => 'MindbodyAPI\structures\CustomClientField',
+		'Liability' => 'MindbodyAPI\structures\Liability',
+		'ProspectStage' => 'MindbodyAPI\structures\ProspectStage',
+		'ProviderIDUpdate' => 'MindbodyAPI\structures\ProviderIDUpdate',
 		'Visit' => 'MindbodyAPI\structures\Visit',
 		'UpdateClientVisits' => 'MindbodyAPI\structures\UpdateClientVisits',
 		'UpdateClientVisitsRequest' => 'MindbodyAPI\structures\UpdateClientVisitsRequest',
@@ -92,198 +99,255 @@ class ClassService extends \MindbodyAPI\MindbodyClient {
 		'GetWaitlistEntriesResponse' => 'MindbodyAPI\structures\GetWaitlistEntriesResponse',
 		'GetWaitlistEntriesResult' => 'MindbodyAPI\structures\GetWaitlistEntriesResult',
 		'WaitlistEntry' => 'MindbodyAPI\structures\WaitlistEntry',
+		'SubstituteClassTeacher' => 'MindbodyAPI\structures\SubstituteClassTeacher',
+		'SubstituteClassTeacherRequest' => 'MindbodyAPI\structures\SubstituteClassTeacherRequest',
+		'SubstituteClassTeacherResponse' => 'MindbodyAPI\structures\SubstituteClassTeacherResponse',
+		'SubstituteClassTeacherResult' => 'MindbodyAPI\structures\SubstituteClassTeacherResult',
+		'SubtituteClassTeacher' => 'MindbodyAPI\structures\SubtituteClassTeacher',
+		'SubtituteClassTeacherResponse' => 'MindbodyAPI\structures\SubtituteClassTeacherResponse',
+		'CancelSingleClass' => 'MindbodyAPI\structures\CancelSingleClass',
+		'CancelSingleClassRequest' => 'MindbodyAPI\structures\CancelSingleClassRequest',
+		'CancelSingleClassResponse' => 'MindbodyAPI\structures\CancelSingleClassResponse',
+		'CancelSingleClassResult' => 'MindbodyAPI\structures\CancelSingleClassResult',
 	);
+
 	public function __construct($wsdl = "/0_5/ClassService.asmx?WSDL", $options = array()) {
 		foreach (self::$classmap as $key => $value) {
 			if (!isset($options['classmap'][$key])) {
 				$options['classmap'][$key] = $value;
 			}
 		}
-		if (!ini_get('user_agent')) ini_set('user_agent', 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US; rv:1.9.2.19) Gecko/20110707 Firefox/3.6.19');
-		if (!isset($options['location'])) $options['location'] = self::$server . '/0_5/ClassService.asmx';
+		if (!ini_get('user_agent')){
+			ini_set('user_agent', 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US; rv:1.9.2.19) Gecko/20110707 Firefox/3.6.19');
+		}
+		if (!isset($options['location'])){
+			$options['location'] = self::$server . '/0_5/ClassService.asmx';
+		}
 		parent::__construct(self::$server . $wsdl, $options);
 	}
+
 	/**
-	 * Gets a list of classes.
+	 * Gets a list of classes. 
 	 *
 	 * @param GetClasses $parameters
 	 * @return GetClassesResponse
 	 */
 	public function GetClasses(structures\GetClasses $parameters) {
-		return $this->__soapCall('GetClasses', array(
-			$parameters
-		) , array(
-			'uri' => 'http://clients.mindbodyonline.com/api/0_5',
-			'soapaction' => ''
-		));
+		return $this->__soapCall('GetClasses', array($parameters), array(
+					'uri' => 'http://clients.mindbodyonline.com/api/0_5',
+					'soapaction' => ''
+						)
+		);
 	}
+
 	/**
-	 * Update a list of visits.
+	 * Update a list of visits. 
 	 *
 	 * @param UpdateClientVisits $parameters
 	 * @return UpdateClientVisitsResponse
 	 */
 	public function UpdateClientVisits(structures\UpdateClientVisits $parameters) {
-		return $this->__soapCall('UpdateClientVisits', array(
-			$parameters
-		) , array(
-			'uri' => 'http://clients.mindbodyonline.com/api/0_5',
-			'soapaction' => ''
-		));
+		return $this->__soapCall('UpdateClientVisits', array($parameters), array(
+					'uri' => 'http://clients.mindbodyonline.com/api/0_5',
+					'soapaction' => ''
+						)
+		);
 	}
+
 	/**
-	 * Gets a class with a list of clients.
+	 * Gets a class with a list of clients. 
 	 *
 	 * @param GetClassVisits $parameters
 	 * @return GetClassVisitsResponse
 	 */
 	public function GetClassVisits(structures\GetClassVisits $parameters) {
-		return $this->__soapCall('GetClassVisits', array(
-			$parameters
-		) , array(
-			'uri' => 'http://clients.mindbodyonline.com/api/0_5',
-			'soapaction' => ''
-		));
+		return $this->__soapCall('GetClassVisits', array($parameters), array(
+					'uri' => 'http://clients.mindbodyonline.com/api/0_5',
+					'soapaction' => ''
+						)
+		);
 	}
+
 	/**
-	 * Gets a list of class descriptions.
+	 * Gets a list of class descriptions. 
 	 *
 	 * @param GetClassDescriptions $parameters
 	 * @return GetClassDescriptionsResponse
 	 */
 	public function GetClassDescriptions(structures\GetClassDescriptions $parameters) {
-		return $this->__soapCall('GetClassDescriptions', array(
-			$parameters
-		) , array(
-			'uri' => 'http://clients.mindbodyonline.com/api/0_5',
-			'soapaction' => ''
-		));
+		return $this->__soapCall('GetClassDescriptions', array($parameters), array(
+					'uri' => 'http://clients.mindbodyonline.com/api/0_5',
+					'soapaction' => ''
+						)
+		);
 	}
+
 	/**
-	 * Gets a list of enrollments.
+	 * Gets a list of enrollments. 
 	 *
 	 * @param GetEnrollments $parameters
 	 * @return GetEnrollmentsResponse
 	 */
 	public function GetEnrollments(structures\GetEnrollments $parameters) {
-		return $this->__soapCall('GetEnrollments', array(
-			$parameters
-		) , array(
-			'uri' => 'http://clients.mindbodyonline.com/api/0_5',
-			'soapaction' => ''
-		));
+		return $this->__soapCall('GetEnrollments', array($parameters), array(
+					'uri' => 'http://clients.mindbodyonline.com/api/0_5',
+					'soapaction' => ''
+						)
+		);
 	}
+
 	/**
-	 * Gets a list of class schedules.
+	 * Gets a list of class schedules. 
 	 *
 	 * @param GetClassSchedules $parameters
 	 * @return GetClassSchedulesResponse
 	 */
 	public function GetClassSchedules(structures\GetClassSchedules $parameters) {
-		return $this->__soapCall('GetClassSchedules', array(
-			$parameters
-		) , array(
-			'uri' => 'http://clients.mindbodyonline.com/api/0_5',
-			'soapaction' => ''
-		));
+		return $this->__soapCall('GetClassSchedules', array($parameters), array(
+					'uri' => 'http://clients.mindbodyonline.com/api/0_5',
+					'soapaction' => ''
+						)
+		);
 	}
+
 	/**
-	 * Adds clients to classes (signup).
+	 * Adds clients to classes (signup). 
 	 *
 	 * @param AddClientsToClasses $parameters
 	 * @return AddClientsToClassesResponse
 	 */
 	public function AddClientsToClasses(structures\AddClientsToClasses $parameters) {
-		return $this->__soapCall('AddClientsToClasses', array(
-			$parameters
-		) , array(
-			'uri' => 'http://clients.mindbodyonline.com/api/0_5',
-			'soapaction' => ''
-		));
+		return $this->__soapCall('AddClientsToClasses', array($parameters), array(
+					'uri' => 'http://clients.mindbodyonline.com/api/0_5',
+					'soapaction' => ''
+						)
+		);
 	}
+
 	/**
-	 * Removes clients from classes.
+	 * Removes clients from classes. 
 	 *
 	 * @param RemoveClientsFromClasses $parameters
 	 * @return RemoveClientsFromClassesResponse
 	 */
 	public function RemoveClientsFromClasses(structures\RemoveClientsFromClasses $parameters) {
-		return $this->__soapCall('RemoveClientsFromClasses', array(
-			$parameters
-		) , array(
-			'uri' => 'http://clients.mindbodyonline.com/api/0_5',
-			'soapaction' => ''
-		));
+		return $this->__soapCall('RemoveClientsFromClasses', array($parameters), array(
+					'uri' => 'http://clients.mindbodyonline.com/api/0_5',
+					'soapaction' => ''
+						)
+		);
 	}
+
 	/**
-	 * Adds clients to enrollments (signup).
+	 * Adds clients to enrollments (signup). 
 	 *
 	 * @param AddClientsToEnrollments $parameters
 	 * @return AddClientsToEnrollmentsResponse
 	 */
 	public function AddClientsToEnrollments(structures\AddClientsToEnrollments $parameters) {
-		return $this->__soapCall('AddClientsToEnrollments', array(
-			$parameters
-		) , array(
-			'uri' => 'http://clients.mindbodyonline.com/api/0_5',
-			'soapaction' => ''
-		));
+		return $this->__soapCall('AddClientsToEnrollments', array($parameters), array(
+					'uri' => 'http://clients.mindbodyonline.com/api/0_5',
+					'soapaction' => ''
+						)
+		);
 	}
+
 	/**
-	 * Removes client from enrollment waitlist
+	 * Removes client from enrollment waitlist 
 	 *
 	 * @param RemoveFromWaitlist $parameters
 	 * @return RemoveFromWaitlistResponse
 	 */
 	public function RemoveFromWaitlist(structures\RemoveFromWaitlist $parameters) {
-		return $this->__soapCall('RemoveFromWaitlist', array(
-			$parameters
-		) , array(
-			'uri' => 'http://clients.mindbodyonline.com/api/0_5',
-			'soapaction' => ''
-		));
+		return $this->__soapCall('RemoveFromWaitlist', array($parameters), array(
+					'uri' => 'http://clients.mindbodyonline.com/api/0_5',
+					'soapaction' => ''
+						)
+		);
 	}
+
 	/**
-	 * Gets a list of semesters.
+	 * Gets a list of semesters. 
 	 *
 	 * @param GetSemesters $parameters
 	 * @return GetSemestersResponse
 	 */
 	public function GetSemesters(structures\GetSemesters $parameters) {
-		return $this->__soapCall('GetSemesters', array(
-			$parameters
-		) , array(
-			'uri' => 'http://clients.mindbodyonline.com/api/0_5',
-			'soapaction' => ''
-		));
+		return $this->__soapCall('GetSemesters', array($parameters), array(
+					'uri' => 'http://clients.mindbodyonline.com/api/0_5',
+					'soapaction' => ''
+						)
+		);
 	}
+
 	/**
-	 * Gets a list of courses.
+	 * Gets a list of courses. 
 	 *
 	 * @param GetCourses $parameters
 	 * @return GetCoursesResponse
 	 */
 	public function GetCourses(structures\GetCourses $parameters) {
-		return $this->__soapCall('GetCourses', array(
-			$parameters
-		) , array(
-			'uri' => 'http://clients.mindbodyonline.com/api/0_5',
-			'soapaction' => ''
-		));
+		return $this->__soapCall('GetCourses', array($parameters), array(
+					'uri' => 'http://clients.mindbodyonline.com/api/0_5',
+					'soapaction' => ''
+						)
+		);
 	}
+
 	/**
-	 * Get waitlist entries.
+	 * Get waitlist entries. 
 	 *
 	 * @param GetWaitlistEntries $parameters
 	 * @return GetWaitlistEntriesResponse
 	 */
 	public function GetWaitlistEntries(structures\GetWaitlistEntries $parameters) {
-		return $this->__soapCall('GetWaitlistEntries', array(
-			$parameters
-		) , array(
-			'uri' => 'http://clients.mindbodyonline.com/api/0_5',
-			'soapaction' => ''
-		));
+		return $this->__soapCall('GetWaitlistEntries', array($parameters), array(
+					'uri' => 'http://clients.mindbodyonline.com/api/0_5',
+					'soapaction' => ''
+						)
+		);
 	}
+
+	/**
+	 * Substitutes the teacher for a class. 
+	 *
+	 * @param SubstituteClassTeacher $parameters
+	 * @return SubstituteClassTeacherResponse
+	 */
+	public function SubstituteClassTeacher(structures\SubstituteClassTeacher $parameters) {
+		return $this->__soapCall('SubstituteClassTeacher', array($parameters), array(
+					'uri' => 'http://clients.mindbodyonline.com/api/0_5',
+					'soapaction' => ''
+						)
+		);
+	}
+
+	/**
+	 * Substitutes the teacher for a class. 
+	 *
+	 * @param SubtituteClassTeacher $parameters
+	 * @return SubtituteClassTeacherResponse
+	 */
+	public function SubtituteClassTeacher(structures\SubtituteClassTeacher $parameters) {
+		return $this->__soapCall('SubtituteClassTeacher', array($parameters), array(
+					'uri' => 'http://clients.mindbodyonline.com/api/0_5',
+					'soapaction' => ''
+						)
+		);
+	}
+
+	/**
+	 * Cancels a single class instance. 
+	 *
+	 * @param CancelSingleClass $parameters
+	 * @return CancelSingleClassResponse
+	 */
+	public function CancelSingleClass(structures\CancelSingleClass $parameters) {
+		return $this->__soapCall('CancelSingleClass', array($parameters), array(
+					'uri' => 'http://clients.mindbodyonline.com/api/0_5',
+					'soapaction' => ''
+						)
+		);
+	}
+
 }
-?>

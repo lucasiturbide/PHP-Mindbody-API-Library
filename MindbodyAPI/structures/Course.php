@@ -1,6 +1,9 @@
 <?php
+
 namespace MindbodyAPI\structures;
+
 class Course {
+
 	public $ID; // long
 	public $Name; // string
 	public $Description; // string
@@ -11,6 +14,7 @@ class Course {
 	public $Organizer; // Staff
 	public $Program; // Program
 	public $ImageURL; // string
-	
+
 }
+
 ?>

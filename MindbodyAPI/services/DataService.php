@@ -1,7 +1,11 @@
 <?php
+
 namespace MindbodyAPI\services;
+
 use MindbodyAPI\structures;
+
 class DataService extends \MindbodyAPI\MindbodyClient {
+
 	public static $classmap = array(
 		'SelectDataXml' => 'MindbodyAPI\structures\SelectDataXml',
 		'SelectDataXmlRequest' => 'MindbodyAPI\structures\SelectDataXmlRequest',
@@ -13,10 +17,18 @@ class DataService extends \MindbodyAPI\MindbodyClient {
 		'SelectDataXmlResult' => 'MindbodyAPI\structures\SelectDataXmlResult',
 		'MBResult' => 'MindbodyAPI\structures\MBResult',
 		'StatusCode' => 'MindbodyAPI\structures\StatusCode',
+		'FunctionDataXml' => 'MindbodyAPI\structures\FunctionDataXml',
+		'FunctionDataXmlRequest' => 'MindbodyAPI\structures\FunctionDataXmlRequest',
+		'FunctionParam' => 'MindbodyAPI\structures\FunctionParam',
+		'FunctionDataXmlResponse' => 'MindbodyAPI\structures\FunctionDataXmlResponse',
+		'FunctionDataCSV' => 'MindbodyAPI\structures\FunctionDataCSV',
+		'FunctionDataCSVResponse' => 'MindbodyAPI\structures\FunctionDataCSVResponse',
+		'SelectDataCSVResult' => 'MindbodyAPI\structures\SelectDataCSVResult',
 		'SelectDataCSV' => 'MindbodyAPI\structures\SelectDataCSV',
 		'SelectDataCSVRequest' => 'MindbodyAPI\structures\SelectDataCSVRequest',
 		'SelectDataCSVResponse' => 'MindbodyAPI\structures\SelectDataCSVResponse',
-		'SelectDataCSVResult' => 'MindbodyAPI\structures\SelectDataCSVResult',
+		'FunctionAggregateDataXml' => 'MindbodyAPI\structures\FunctionAggregateDataXml',
+		'FunctionAggregateDataXmlResponse' => 'MindbodyAPI\structures\FunctionAggregateDataXmlResponse',
 		'SelectAggregateDataXml' => 'MindbodyAPI\structures\SelectAggregateDataXml',
 		'SelectAggregateDataXmlRequest' => 'MindbodyAPI\structures\SelectAggregateDataXmlRequest',
 		'SelectAggregateDataXmlResponse' => 'MindbodyAPI\structures\SelectAggregateDataXmlResponse',
@@ -25,86 +37,196 @@ class DataService extends \MindbodyAPI\MindbodyClient {
 		'SelectAggregateDataCSVRequest' => 'MindbodyAPI\structures\SelectAggregateDataCSVRequest',
 		'SelectAggregateDataCSVResponse' => 'MindbodyAPI\structures\SelectAggregateDataCSVResponse',
 		'SelectAggregateDataCSVResult' => 'MindbodyAPI\structures\SelectAggregateDataCSVResult',
-		'FunctionDataCSV' => 'MindbodyAPI\structures\FunctionDataCSV',
-		'FunctionDataCSVResponse' => 'MindbodyAPI\structures\FunctionDataCSVResponse',
-		'FunctionDataXMLRequest' => 'MindbodyAPI\structures\FunctionDataXMLRequest',
+		'GetFunctionNames' => 'MindbodyAPI\structures\GetFunctionNames',
+		'GetFunctionNamesRequest' => 'MindbodyAPI\structures\GetFunctionNamesRequest',
+		'GetFunctionNamesResponse' => 'MindbodyAPI\structures\GetFunctionNamesResponse',
+		'GetFunctionNamesResult' => 'MindbodyAPI\structures\GetFunctionNamesResult',
+		'ApiFunction' => 'MindbodyAPI\structures\ApiFunction',
+		'GetFunctionParameters' => 'MindbodyAPI\structures\GetFunctionParameters',
+		'GetFunctionParametersRequest' => 'MindbodyAPI\structures\GetFunctionParametersRequest',
+		'GetFunctionParametersResponse' => 'MindbodyAPI\structures\GetFunctionParametersResponse',
+		'GetFunctionParametersResult' => 'MindbodyAPI\structures\GetFunctionParametersResult',
+		'ApiFunctionParameter' => 'MindbodyAPI\structures\ApiFunctionParameter',
+		'GetSitesWithFunctionDataAccess' => 'MindbodyAPI\structures\GetSitesWithFunctionDataAccess',
+		'GetSitesWithFunctionDataAccessRequest' => 'MindbodyAPI\structures\GetSitesWithFunctionDataAccessRequest',
+		'GetSitesWithFunctionDataAccessResponse' => 'MindbodyAPI\structures\GetSitesWithFunctionDataAccessResponse',
+		'GetSitesWithFunctionDataAccessResult' => 'MindbodyAPI\structures\GetSitesWithFunctionDataAccessResult',
+		'Site' => 'MindbodyAPI\structures\Site',
+		'RunFunctionForJob' => 'MindbodyAPI\structures\RunFunctionForJob',
+		'RunFunctionForJobRequest' => 'MindbodyAPI\structures\RunFunctionForJobRequest',
+		'RunFunctionForJobResponse' => 'MindbodyAPI\structures\RunFunctionForJobResponse',
+		'RunFunctionForJobResult' => 'MindbodyAPI\structures\RunFunctionForJobResult',
 		'Row' => 'MindbodyAPI\structures\Row',
 		'RecordSet' => 'MindbodyAPI\structures\RecordSet',
 	);
+
 	public function __construct($wsdl = "/0_5/DataService.asmx?WSDL", $options = array()) {
 		foreach (self::$classmap as $key => $value) {
 			if (!isset($options['classmap'][$key])) {
 				$options['classmap'][$key] = $value;
 			}
 		}
-		if (!ini_get('user_agent')) ini_set('user_agent', 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US; rv:1.9.2.19) Gecko/20110707 Firefox/3.6.19');
-		if (!isset($options['location'])) $options['location'] = self::$server . '/0_5/DataService.asmx';
+		if (!ini_get('user_agent')){
+			ini_set('user_agent', 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US; rv:1.9.2.19) Gecko/20110707 Firefox/3.6.19');
+		}
+		if (!isset($options['location'])){
+			$options['location'] = self::$server . '/0_5/DataService.asmx';
+		}
 		parent::__construct(self::$server . $wsdl, $options);
 	}
+
 	/**
-	 * Issue a select statement to your MB database
+	 * Issue a select statement to your MB database 
 	 *
 	 * @param SelectDataXml $parameters
 	 * @return SelectDataXmlResponse
 	 */
 	public function SelectDataXml(structures\SelectDataXml $parameters) {
-		return $this->__soapCall('SelectDataXml', array(
-			$parameters
-		) , array(
-			'uri' => 'http://clients.mindbodyonline.com/api/0_5',
-			'soapaction' => ''
-		));
+		return $this->__soapCall('SelectDataXml', array($parameters), array(
+					'uri' => 'http://clients.mindbodyonline.com/api/0_5',
+					'soapaction' => ''
+						)
+		);
 	}
+
 	/**
-	 * Issue a select statement to your MB database
+	 *  
+	 *
+	 * @param FunctionDataXml $parameters
+	 * @return FunctionDataXmlResponse
+	 */
+	public function FunctionDataXml(structures\FunctionDataXml $parameters) {
+		return $this->__soapCall('FunctionDataXml', array($parameters), array(
+					'uri' => 'http://clients.mindbodyonline.com/api/0_5',
+					'soapaction' => ''
+						)
+		);
+	}
+
+	/**
+	 *  
+	 *
+	 * @param FunctionDataCSV $parameters
+	 * @return FunctionDataCSVResponse
+	 */
+	public function FunctionDataCSV(structures\FunctionDataCSV $parameters) {
+		return $this->__soapCall('FunctionDataCSV', array($parameters), array(
+					'uri' => 'http://clients.mindbodyonline.com/api/0_5',
+					'soapaction' => ''
+						)
+		);
+	}
+
+	/**
+	 * Issue a select statement to your MB database 
 	 *
 	 * @param SelectDataCSV $parameters
 	 * @return SelectDataCSVResponse
 	 */
 	public function SelectDataCSV(structures\SelectDataCSV $parameters) {
-		return $this->__soapCall('SelectDataCSV', array(
-			$parameters
-		) , array(
-			'uri' => 'http://clients.mindbodyonline.com/api/0_5',
-			'soapaction' => ''
-		));
+		return $this->__soapCall('SelectDataCSV', array($parameters), array(
+					'uri' => 'http://clients.mindbodyonline.com/api/0_5',
+					'soapaction' => ''
+						)
+		);
 	}
+
 	/**
-	 * Issue a select statement to aggregate data
+	 *  
+	 *
+	 * @param FunctionAggregateDataXml $parameters
+	 * @return FunctionAggregateDataXmlResponse
+	 */
+	public function FunctionAggregateDataXml(structures\FunctionAggregateDataXml $parameters) {
+		return $this->__soapCall('FunctionAggregateDataXml', array($parameters), array(
+					'uri' => 'http://clients.mindbodyonline.com/api/0_5',
+					'soapaction' => ''
+						)
+		);
+	}
+
+	/**
+	 * Issue a select statement to aggregate data 
 	 *
 	 * @param SelectAggregateDataXml $parameters
 	 * @return SelectAggregateDataXmlResponse
 	 */
 	public function SelectAggregateDataXml(structures\SelectAggregateDataXml $parameters) {
-		return $this->__soapCall('SelectAggregateDataXml', array(
-			$parameters
-		) , array(
-			'uri' => 'http://clients.mindbodyonline.com/api/0_5',
-			'soapaction' => ''
-		));
+		return $this->__soapCall('SelectAggregateDataXml', array($parameters), array(
+					'uri' => 'http://clients.mindbodyonline.com/api/0_5',
+					'soapaction' => ''
+						)
+		);
 	}
+
 	/**
-	 * Issue a select statement to aggregate data
+	 * Issue a select statement to aggregate data 
 	 *
 	 * @param SelectAggregateDataCSV $parameters
 	 * @return SelectAggregateDataCSVResponse
 	 */
 	public function SelectAggregateDataCSV(structures\SelectAggregateDataCSV $parameters) {
-		return $this->__soapCall('SelectAggregateDataCSV', array(
-			$parameters
-		) , array(
-			'uri' => 'http://clients.mindbodyonline.com/api/0_5',
-			'soapaction' => ''
-		));
+		return $this->__soapCall('SelectAggregateDataCSV', array($parameters), array(
+					'uri' => 'http://clients.mindbodyonline.com/api/0_5',
+					'soapaction' => ''
+						)
+		);
 	}
-	
-	public function FunctionDataCSV(structures\FunctionDataCSV $parameters){
-		return $this->__soapCall('FunctionDataCSV', array(
-			$parameters
-		) , array(
-			'uri' => 'http://clients.mindbodyonline.com/api/0_5',
-			'soapaction' => ''
-		));
+
+	/**
+	 * Retrieve all available FunctionData function names for a given sourcename. 
+	 *
+	 * @param GetFunctionNames $parameters
+	 * @return GetFunctionNamesResponse
+	 */
+	public function GetFunctionNames(structures\GetFunctionNames $parameters) {
+		return $this->__soapCall('GetFunctionNames', array($parameters), array(
+					'uri' => 'http://clients.mindbodyonline.com/api/0_5',
+					'soapaction' => ''
+						)
+		);
 	}
+
+	/**
+	 * Retrieve all available parameters for a given function. 
+	 *
+	 * @param GetFunctionParameters $parameters
+	 * @return GetFunctionParametersResponse
+	 */
+	public function GetFunctionParameters(structures\GetFunctionParameters $parameters) {
+		return $this->__soapCall('GetFunctionParameters', array($parameters), array(
+					'uri' => 'http://clients.mindbodyonline.com/api/0_5',
+					'soapaction' => ''
+						)
+		);
+	}
+
+	/**
+	 * Retrieve all sites that you can access with FunctionData. 
+	 *
+	 * @param GetSitesWithFunctionDataAccess $parameters
+	 * @return GetSitesWithFunctionDataAccessResponse
+	 */
+	public function GetSitesWithFunctionDataAccess(structures\GetSitesWithFunctionDataAccess $parameters) {
+		return $this->__soapCall('GetSitesWithFunctionDataAccess', array($parameters), array(
+					'uri' => 'http://clients.mindbodyonline.com/api/0_5',
+					'soapaction' => ''
+						)
+		);
+	}
+
+	/**
+	 *  
+	 *
+	 * @param RunFunctionForJob $parameters
+	 * @return RunFunctionForJobResponse
+	 */
+	public function RunFunctionForJob(structures\RunFunctionForJob $parameters) {
+		return $this->__soapCall('RunFunctionForJob', array($parameters), array(
+					'uri' => 'http://clients.mindbodyonline.com/api/0_5',
+					'soapaction' => ''
+						)
+		);
+	}
+
 }
-?>

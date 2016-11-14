@@ -1,6 +1,9 @@
 <?php
+
 namespace MindbodyAPI\structures;
+
 class ShoppingCart {
+
 	public $AuthCode; // string
 	public $Action; // ActionCode
 	public $ID; // string
@@ -9,6 +12,7 @@ class ShoppingCart {
 	public $DiscountTotal; // double
 	public $TaxTotal; // double
 	public $GrandTotal; // double
-	
+
 }
+
 ?>

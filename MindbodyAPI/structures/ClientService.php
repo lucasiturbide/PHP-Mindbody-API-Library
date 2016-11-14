@@ -1,6 +1,9 @@
 <?php
+
 namespace MindbodyAPI\structures;
+
 class ClientService {
+
 	public $Current; // boolean
 	public $Count; // int
 	public $Remaining; // int
@@ -11,6 +14,7 @@ class ClientService {
 	public $ActiveDate; // dateTime
 	public $ExpirationDate; // dateTime
 	public $Program; // Program
-	
+
 }
+
 ?>

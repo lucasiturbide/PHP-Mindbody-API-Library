@@ -1,6 +1,9 @@
 <?php
+
 namespace MindbodyAPI\structures;
+
 class ClientCreditCard {
+
 	public $CardType; // string
 	public $LastFour; // string
 	public $CardNumber; // string
@@ -11,6 +14,7 @@ class ClientCreditCard {
 	public $City; // string
 	public $State; // string
 	public $PostalCode; // string
-	
+
 }
+
 ?>

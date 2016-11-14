@@ -1,7 +1,11 @@
 <?php
+
 namespace MindbodyAPI\services;
+
 use MindbodyAPI\structures;
+
 class SiteService extends \MindbodyAPI\MindbodyClient {
+
 	public static $classmap = array(
 		'GetSites' => 'MindbodyAPI\structures\GetSites',
 		'GetSitesRequest' => 'MindbodyAPI\structures\GetSitesRequest',
@@ -54,144 +58,206 @@ class SiteService extends \MindbodyAPI\MindbodyClient {
 		'ReserveResourceRequest' => 'MindbodyAPI\structures\ReserveResourceRequest',
 		'ReserveResourceResponse' => 'MindbodyAPI\structures\ReserveResourceResponse',
 		'ReserveResourceResult' => 'MindbodyAPI\structures\ReserveResourceResult',
+		'GetMobileProviders' => 'MindbodyAPI\structures\GetMobileProviders',
+		'GetMobileProvidersRequest' => 'MindbodyAPI\structures\GetMobileProvidersRequest',
+		'GetMobileProvidersResponse' => 'MindbodyAPI\structures\GetMobileProvidersResponse',
+		'GetMobileProvidersResult' => 'MindbodyAPI\structures\GetMobileProvidersResult',
+		'MobileProvider' => 'MindbodyAPI\structures\MobileProvider',
+		'GetProspectStages' => 'MindbodyAPI\structures\GetProspectStages',
+		'GetProspectStagesRequest' => 'MindbodyAPI\structures\GetProspectStagesRequest',
+		'GetProspectStagesResponse' => 'MindbodyAPI\structures\GetProspectStagesResponse',
+		'GetProspectStagesResult' => 'MindbodyAPI\structures\GetProspectStagesResult',
+		'ProspectStage' => 'MindbodyAPI\structures\ProspectStage',
+		'GetGenders' => 'MindbodyAPI\structures\GetGenders',
+		'GetGendersRequest' => 'MindbodyAPI\structures\GetGendersRequest',
+		'GetGendersResponse' => 'MindbodyAPI\structures\GetGendersResponse',
+		'GetGendersResult' => 'MindbodyAPI\structures\GetGendersResult',
+		'GenderOption' => 'MindbodyAPI\structures\GenderOption',
 		'Row' => 'MindbodyAPI\structures\Row',
 		'RecordSet' => 'MindbodyAPI\structures\RecordSet',
 	);
+
 	public function __construct($wsdl = "/0_5/SiteService.asmx?WSDL", $options = array()) {
 		foreach (self::$classmap as $key => $value) {
 			if (!isset($options['classmap'][$key])) {
 				$options['classmap'][$key] = $value;
 			}
 		}
-		if (!ini_get('user_agent')) ini_set('user_agent', 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US; rv:1.9.2.19) Gecko/20110707 Firefox/3.6.19');
-		if (!isset($options['location'])) $options['location'] = self::$server . '/0_5/SiteService.asmx';
+		if (!ini_get('user_agent')){
+			ini_set('user_agent', 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US; rv:1.9.2.19) Gecko/20110707 Firefox/3.6.19');
+		}
+		if (!isset($options['location'])){
+			$options['location'] = self::$server . '/0_5/SiteService.asmx';
+		}
 		parent::__construct(self::$server . $wsdl, $options);
 	}
+
 	/**
-	 * Gets a list of sites.
+	 * Gets a list of sites. 
 	 *
 	 * @param GetSites $parameters
 	 * @return GetSitesResponse
 	 */
 	public function GetSites(structures\GetSites $parameters) {
-		return $this->__soapCall('GetSites', array(
-			$parameters
-		) , array(
-			'uri' => 'http://clients.mindbodyonline.com/api/0_5',
-			'soapaction' => ''
-		));
+		return $this->__soapCall('GetSites', array($parameters), array(
+					'uri' => 'http://clients.mindbodyonline.com/api/0_5',
+					'soapaction' => ''
+						)
+		);
 	}
+
 	/**
-	 * Gets a list of locations.
+	 * Gets a list of locations. 
 	 *
 	 * @param GetLocations $parameters
 	 * @return GetLocationsResponse
 	 */
 	public function GetLocations(structures\GetLocations $parameters) {
-		return $this->__soapCall('GetLocations', array(
-			$parameters
-		) , array(
-			'uri' => 'http://clients.mindbodyonline.com/api/0_5',
-			'soapaction' => ''
-		));
+		return $this->__soapCall('GetLocations', array($parameters), array(
+					'uri' => 'http://clients.mindbodyonline.com/api/0_5',
+					'soapaction' => ''
+						)
+		);
 	}
+
 	/**
-	 * Gets an activation code.
+	 * Gets an activation code. 
 	 *
 	 * @param GetActivationCode $parameters
 	 * @return GetActivationCodeResponse
 	 */
 	public function GetActivationCode(structures\GetActivationCode $parameters) {
-		return $this->__soapCall('GetActivationCode', array(
-			$parameters
-		) , array(
-			'uri' => 'http://clients.mindbodyonline.com/api/0_5',
-			'soapaction' => ''
-		));
+		return $this->__soapCall('GetActivationCode', array($parameters), array(
+					'uri' => 'http://clients.mindbodyonline.com/api/0_5',
+					'soapaction' => ''
+						)
+		);
 	}
+
 	/**
-	 * Gets a list of programs.
+	 * Gets a list of programs. 
 	 *
 	 * @param GetPrograms $parameters
 	 * @return GetProgramsResponse
 	 */
 	public function GetPrograms(structures\GetPrograms $parameters) {
-		return $this->__soapCall('GetPrograms', array(
-			$parameters
-		) , array(
-			'uri' => 'http://clients.mindbodyonline.com/api/0_5',
-			'soapaction' => ''
-		));
+		return $this->__soapCall('GetPrograms', array($parameters), array(
+					'uri' => 'http://clients.mindbodyonline.com/api/0_5',
+					'soapaction' => ''
+						)
+		);
 	}
+
 	/**
-	 * Gets a list of session types.
+	 * Gets a list of session types. 
 	 *
 	 * @param GetSessionTypes $parameters
 	 * @return GetSessionTypesResponse
 	 */
 	public function GetSessionTypes(structures\GetSessionTypes $parameters) {
-		return $this->__soapCall('GetSessionTypes', array(
-			$parameters
-		) , array(
-			'uri' => 'http://clients.mindbodyonline.com/api/0_5',
-			'soapaction' => ''
-		));
+		return $this->__soapCall('GetSessionTypes', array($parameters), array(
+					'uri' => 'http://clients.mindbodyonline.com/api/0_5',
+					'soapaction' => ''
+						)
+		);
 	}
+
 	/**
-	 * Gets a list of resources.
+	 * Gets a list of resources. 
 	 *
 	 * @param GetResources $parameters
 	 * @return GetResourcesResponse
 	 */
 	public function GetResources(structures\GetResources $parameters) {
-		return $this->__soapCall('GetResources', array(
-			$parameters
-		) , array(
-			'uri' => 'http://clients.mindbodyonline.com/api/0_5',
-			'soapaction' => ''
-		));
+		return $this->__soapCall('GetResources', array($parameters), array(
+					'uri' => 'http://clients.mindbodyonline.com/api/0_5',
+					'soapaction' => ''
+						)
+		);
 	}
+
 	/**
-	 * Gets a list of relationships.
+	 * Gets a list of relationships. 
 	 *
 	 * @param GetRelationships $parameters
 	 * @return GetRelationshipsResponse
 	 */
 	public function GetRelationships(structures\GetRelationships $parameters) {
-		return $this->__soapCall('GetRelationships', array(
-			$parameters
-		) , array(
-			'uri' => 'http://clients.mindbodyonline.com/api/0_5',
-			'soapaction' => ''
-		));
+		return $this->__soapCall('GetRelationships', array($parameters), array(
+					'uri' => 'http://clients.mindbodyonline.com/api/0_5',
+					'soapaction' => ''
+						)
+		);
 	}
+
 	/**
-	 * Gets all resources schedule.
+	 * Gets all resources schedule. 
 	 *
 	 * @param GetResourceSchedule $parameters
 	 * @return GetResourceScheduleResponse
 	 */
 	public function GetResourceSchedule(structures\GetResourceSchedule $parameters) {
-		return $this->__soapCall('GetResourceSchedule', array(
-			$parameters
-		) , array(
-			'uri' => 'http://clients.mindbodyonline.com/api/0_5',
-			'soapaction' => ''
-		));
+		return $this->__soapCall('GetResourceSchedule', array($parameters), array(
+					'uri' => 'http://clients.mindbodyonline.com/api/0_5',
+					'soapaction' => ''
+						)
+		);
 	}
+
 	/**
-	 * Reserves a resource.
+	 * Reserves a resource. 
 	 *
 	 * @param ReserveResource $parameters
 	 * @return ReserveResourceResponse
 	 */
 	public function ReserveResource(structures\ReserveResource $parameters) {
-		return $this->__soapCall('ReserveResource', array(
-			$parameters
-		) , array(
-			'uri' => 'http://clients.mindbodyonline.com/api/0_5',
-			'soapaction' => ''
-		));
+		return $this->__soapCall('ReserveResource', array($parameters), array(
+					'uri' => 'http://clients.mindbodyonline.com/api/0_5',
+					'soapaction' => ''
+						)
+		);
 	}
+
+	/**
+	 * Gets a list of active mobile providers. 
+	 *
+	 * @param GetMobileProviders $parameters
+	 * @return GetMobileProvidersResponse
+	 */
+	public function GetMobileProviders(structures\GetMobileProviders $parameters) {
+		return $this->__soapCall('GetMobileProviders', array($parameters), array(
+					'uri' => 'http://clients.mindbodyonline.com/api/0_5',
+					'soapaction' => ''
+						)
+		);
+	}
+
+	/**
+	 * Gets a list of prospect stages for a site. 
+	 *
+	 * @param GetProspectStages $parameters
+	 * @return GetProspectStagesResponse
+	 */
+	public function GetProspectStages(structures\GetProspectStages $parameters) {
+		return $this->__soapCall('GetProspectStages', array($parameters), array(
+					'uri' => 'http://clients.mindbodyonline.com/api/0_5',
+					'soapaction' => ''
+						)
+		);
+	}
+
+	/**
+	 * Gets a list of prospect stages for a site. 
+	 *
+	 * @param GetGenders $parameters
+	 * @return GetGendersResponse
+	 */
+	public function GetGenders(structures\GetGenders $parameters) {
+		return $this->__soapCall('GetGenders', array($parameters), array(
+					'uri' => 'http://clients.mindbodyonline.com/api/0_5',
+					'soapaction' => ''
+						)
+		);
+	}
+
 }
-?>

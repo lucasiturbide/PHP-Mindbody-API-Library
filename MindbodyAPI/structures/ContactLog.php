@@ -1,6 +1,9 @@
 <?php
+
 namespace MindbodyAPI\structures;
+
 class ContactLog {
+
 	public $ID; // long
 	public $CreatedBy; // Staff
 	public $Client; // Client
@@ -14,6 +17,7 @@ class ContactLog {
 	public $Comments; // ArrayOfContactLogComment
 	public $Types; // ArrayOfContactLogType
 	public $Action; // ActionCode
-	
+
 }
+
 ?>

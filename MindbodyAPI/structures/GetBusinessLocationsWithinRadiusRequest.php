@@ -1,6 +1,9 @@
 <?php
+
 namespace MindbodyAPI\structures;
+
 class GetBusinessLocationsWithinRadiusRequest {
+
 	public $SearchLatitude; // double
 	public $SearchLongitude; // double
 	public $SearchRadius; // double
@@ -8,6 +11,7 @@ class GetBusinessLocationsWithinRadiusRequest {
 	public $SearchText; // string
 	public $SortOption; // string
 	public $SearchDomain; // string
-	
+
 }
+
 ?>

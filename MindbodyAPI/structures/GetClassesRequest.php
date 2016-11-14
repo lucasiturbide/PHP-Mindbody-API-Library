@@ -1,6 +1,9 @@
 <?php
+
 namespace MindbodyAPI\structures;
+
 class GetClassesRequest {
+
 	public $ClassDescriptionIDs; // ArrayOfInt
 	public $ClassIDs; // ArrayOfInt
 	public $StaffIDs; // ArrayOfLong
@@ -13,6 +16,7 @@ class GetClassesRequest {
 	public $SemesterIDs; // ArrayOfInt
 	public $HideCanceledClasses; // boolean
 	public $SchedulingWindow; // boolean
-	
+
 }
+
 ?>

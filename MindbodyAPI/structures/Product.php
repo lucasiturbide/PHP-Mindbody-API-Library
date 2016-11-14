@@ -1,6 +1,9 @@
 <?php
+
 namespace MindbodyAPI\structures;
+
 class Product {
+
 	public $Price; // decimal
 	public $TaxIncluded; // decimal
 	public $TaxRate; // decimal
@@ -13,6 +16,7 @@ class Product {
 	public $LongDesc; // string
 	public $Color; // Color
 	public $Size; // Size
-	
+
 }
+
 ?>

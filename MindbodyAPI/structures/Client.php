@@ -1,12 +1,16 @@
 <?php
+
 namespace MindbodyAPI\structures;
+
 class Client {
+
 	public $NewID; // string
 	public $AccountBalance; // double
 	public $ClientIndexes; // ArrayOfClientIndex
 	public $Username; // string
 	public $Password; // string
 	public $Notes; // string
+	public $MobileProvider; // int
 	public $ClientCreditCard; // ClientCreditCard
 	public $LastFormulaNotes; // string
 	public $AppointmentGenderPreference; // string
@@ -15,12 +19,19 @@ class Client {
 	public $Inactive; // boolean
 	public $ClientRelationships; // ArrayOfClientRelationship
 	public $Reps; // ArrayOfRep
+	public $SaleReps; // ArrayOfSalesRep
 	public $CustomClientFields; // ArrayOfCustomClientField
 	public $LiabilityRelease; // boolean
 	public $EmergencyContactInfoName; // string
 	public $EmergencyContactInfoRelationship; // string
 	public $EmergencyContactInfoPhone; // string
 	public $EmergencyContactInfoEmail; // string
+	public $PromotionalEmailOptIn; // boolean
+	public $CreationDate; // dateTime
+	public $Liability; // Liability
+	public $ProspectStage; // ProspectStage
+	public $UniqueID; // long
+	public $MembershipIcon; // int
 	public $Action; // ActionCode
 	public $ID; // string
 	public $FirstName; // string
@@ -46,6 +57,9 @@ class Client {
 	public $RedAlert; // string
 	public $PhotoURL; // string
 	public $IsProspect; // boolean
-	
+	public $Status; // string
+	public $ContactMethod; // short
+
 }
+
 ?>

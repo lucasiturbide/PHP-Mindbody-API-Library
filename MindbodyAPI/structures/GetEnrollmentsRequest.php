@@ -1,6 +1,9 @@
 <?php
+
 namespace MindbodyAPI\structures;
+
 class GetEnrollmentsRequest {
+
 	public $LocationIDs; // ArrayOfInt
 	public $ClassScheduleIDs; // ArrayOfInt
 	public $StaffIDs; // ArrayOfLong
@@ -10,6 +13,7 @@ class GetEnrollmentsRequest {
 	public $CourseIDs; // ArrayOfLong
 	public $StartDate; // dateTime
 	public $EndDate; // dateTime
-	
+
 }
+
 ?>

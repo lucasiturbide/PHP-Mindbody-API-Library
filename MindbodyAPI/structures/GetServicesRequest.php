@@ -1,6 +1,9 @@
 <?php
+
 namespace MindbodyAPI\structures;
+
 class GetServicesRequest {
+
 	public $ProgramIDs; // ArrayOfInt
 	public $SessionTypeIDs; // ArrayOfInt
 	public $ServiceIDs; // ArrayOfString
@@ -10,6 +13,7 @@ class GetServicesRequest {
 	public $LocationID; // int
 	public $HideRelatedPrograms; // boolean
 	public $StaffID; // long
-	
+
 }
+
 ?>

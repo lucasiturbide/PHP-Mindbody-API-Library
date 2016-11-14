@@ -1,6 +1,9 @@
 <?php
+
 namespace MindbodyAPI\structures;
+
 class GetClassesWithinRadiusRequest {
+
 	public $SearchLatitude; // double
 	public $SearchLongitude; // double
 	public $SearchRadius; // double
@@ -12,6 +15,7 @@ class GetClassesWithinRadiusRequest {
 	public $SortOption; // string
 	public $SearchDomain; // string
 	public $IPAddress; // string
-	
+
 }
+
 ?>

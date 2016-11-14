@@ -1,6 +1,9 @@
 <?php
+
 namespace MindbodyAPI\structures;
+
 class GetStaffAppointmentsRequest {
+
 	public $StaffCredentials; // StaffCredentials
 	public $AppointmentIDs; // ArrayOfInt
 	public $LocationIDs; // ArrayOfInt
@@ -8,6 +11,7 @@ class GetStaffAppointmentsRequest {
 	public $EndDate; // dateTime
 	public $StaffIDs; // ArrayOfLong
 	public $ClientIDs; // ArrayOfString
-	
+
 }
+
 ?>

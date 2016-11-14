@@ -1,7 +1,11 @@
 <?php
+
 namespace MindbodyAPI\services;
+
 use MindbodyAPI\structures;
+
 class ClientService extends \MindbodyAPI\MindbodyClient {
+
 	public static $classmap = array(
 		'AddArrival' => 'MindbodyAPI\structures\AddArrival',
 		'AddArrivalRequest' => 'MindbodyAPI\structures\AddArrivalRequest',
@@ -37,7 +41,11 @@ class ClientService extends \MindbodyAPI\MindbodyClient {
 		'Location' => 'MindbodyAPI\structures\Location',
 		'AppointmentStatus' => 'MindbodyAPI\structures\AppointmentStatus',
 		'Resource' => 'MindbodyAPI\structures\Resource',
+		'ProviderIDUpdate' => 'MindbodyAPI\structures\ProviderIDUpdate',
+		'SalesRep' => 'MindbodyAPI\structures\SalesRep',
 		'CustomClientField' => 'MindbodyAPI\structures\CustomClientField',
+		'Liability' => 'MindbodyAPI\structures\Liability',
+		'ProspectStage' => 'MindbodyAPI\structures\ProspectStage',
 		'AddOrUpdateClientsResponse' => 'MindbodyAPI\structures\AddOrUpdateClientsResponse',
 		'AddOrUpdateClientsResult' => 'MindbodyAPI\structures\AddOrUpdateClientsResult',
 		'GetClients' => 'MindbodyAPI\structures\GetClients',
@@ -72,6 +80,10 @@ class ClientService extends \MindbodyAPI\MindbodyClient {
 		'UploadClientDocumentRequest' => 'MindbodyAPI\structures\UploadClientDocumentRequest',
 		'UploadClientDocumentResponse' => 'MindbodyAPI\structures\UploadClientDocumentResponse',
 		'UploadClientDocumentResult' => 'MindbodyAPI\structures\UploadClientDocumentResult',
+		'UploadClientPhoto' => 'MindbodyAPI\structures\UploadClientPhoto',
+		'UploadClientPhotoRequest' => 'MindbodyAPI\structures\UploadClientPhotoRequest',
+		'UploadClientPhotoResponse' => 'MindbodyAPI\structures\UploadClientPhotoResponse',
+		'UploadClientPhotoResult' => 'MindbodyAPI\structures\UploadClientPhotoResult',
 		'GetClientFormulaNotes' => 'MindbodyAPI\structures\GetClientFormulaNotes',
 		'GetClientFormulaNotesRequest' => 'MindbodyAPI\structures\GetClientFormulaNotesRequest',
 		'GetClientFormulaNotesResponse' => 'MindbodyAPI\structures\GetClientFormulaNotesResponse',
@@ -139,353 +151,427 @@ class ClientService extends \MindbodyAPI\MindbodyClient {
 		'ClientSendUserNewPasswordRequest' => 'MindbodyAPI\structures\ClientSendUserNewPasswordRequest',
 		'SendUserNewPasswordResponse' => 'MindbodyAPI\structures\SendUserNewPasswordResponse',
 		'ClientSendUserNewPasswordResult' => 'MindbodyAPI\structures\ClientSendUserNewPasswordResult',
+		'GetClientRelationships' => 'MindbodyAPI\structures\GetClientRelationships',
+		'GetClientRelationshipsRequest' => 'MindbodyAPI\structures\GetClientRelationshipsRequest',
+		'GetClientRelationshipsResponse' => 'MindbodyAPI\structures\GetClientRelationshipsResponse',
+		'GetClientRelationshipsResult' => 'MindbodyAPI\structures\GetClientRelationshipsResult',
+		'ConsumerRelationship' => 'MindbodyAPI\structures\ConsumerRelationship',
+		'AddClientRelationships' => 'MindbodyAPI\structures\AddClientRelationships',
+		'AddClientRelationshipsRequest' => 'MindbodyAPI\structures\AddClientRelationshipsRequest',
+		'AddClientRelationshipsResponse' => 'MindbodyAPI\structures\AddClientRelationshipsResponse',
+		'AddClientRelationshipsResult' => 'MindbodyAPI\structures\AddClientRelationshipsResult',
+		'DeleteClientRelationships' => 'MindbodyAPI\structures\DeleteClientRelationships',
+		'DeleteClientRelationshipsRequest' => 'MindbodyAPI\structures\DeleteClientRelationshipsRequest',
+		'DeleteClientRelationshipsResponse' => 'MindbodyAPI\structures\DeleteClientRelationshipsResponse',
+		'DeleteClientRelationshipsResult' => 'MindbodyAPI\structures\DeleteClientRelationshipsResult',
 	);
+
 	public function __construct($wsdl = "/0_5/ClientService.asmx?WSDL", $options = array()) {
 		foreach (self::$classmap as $key => $value) {
 			if (!isset($options['classmap'][$key])) {
 				$options['classmap'][$key] = $value;
 			}
 		}
-		if (!ini_get('user_agent')) ini_set('user_agent', 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US; rv:1.9.2.19) Gecko/20110707 Firefox/3.6.19');
-		if (!isset($options['location'])) $options['location'] = self::$server . '/0_5/ClientService.asmx';
+		if (!ini_get('user_agent')){
+			ini_set('user_agent', 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US; rv:1.9.2.19) Gecko/20110707 Firefox/3.6.19');
+		}
+		if (!isset($options['location'])){
+			$options['location'] = self::$server . '/0_5/ClientService.asmx';
+		}
 		parent::__construct(self::$server . $wsdl, $options);
 	}
+
 	/**
-	 * Adds an arrival record for the given client.
+	 * Adds an arrival record for the given client. 
 	 *
 	 * @param AddArrival $parameters
 	 * @return AddArrivalResponse
 	 */
 	public function AddArrival(structures\AddArrival $parameters) {
-		return $this->__soapCall('AddArrival', array(
-			$parameters
-		) , array(
-			'uri' => 'http://clients.mindbodyonline.com/api/0_5',
-			'soapaction' => ''
-		));
+		return $this->__soapCall('AddArrival', array($parameters), array(
+					'uri' => 'http://clients.mindbodyonline.com/api/0_5',
+					'soapaction' => ''
+						)
+		);
 	}
+
 	/**
-	 * Adds or updates information for a list of clients.
+	 * Adds or updates information for a list of clients. 
 	 *
 	 * @param AddOrUpdateClients $parameters
 	 * @return AddOrUpdateClientsResponse
 	 */
 	public function AddOrUpdateClients(structures\AddOrUpdateClients $parameters) {
-		return $this->__soapCall('AddOrUpdateClients', array(
-			$parameters
-		) , array(
-			'uri' => 'http://clients.mindbodyonline.com/api/0_5',
-			'soapaction' => ''
-		));
+		return $this->__soapCall('AddOrUpdateClients', array($parameters), array(
+					'uri' => 'http://clients.mindbodyonline.com/api/0_5',
+					'soapaction' => ''
+						)
+		);
 	}
+
 	/**
-	 * Gets a list of clients.
+	 * Gets a list of clients. 
 	 *
 	 * @param GetClients $parameters
 	 * @return GetClientsResponse
 	 */
 	public function GetClients(structures\GetClients $parameters) {
-		return $this->__soapCall('GetClients', array(
-			$parameters
-		) , array(
-			'uri' => 'http://clients.mindbodyonline.com/api/0_5',
-			'soapaction' => ''
-		));
+		return $this->__soapCall('GetClients', array($parameters), array(
+					'uri' => 'http://clients.mindbodyonline.com/api/0_5',
+					'soapaction' => ''
+						)
+		);
 	}
+
 	/**
-	 * Gets a list of currently available client indexes.
+	 * Gets a list of currently available client indexes. 
 	 *
 	 * @param GetCustomClientFields $parameters
 	 * @return GetCustomClientFieldsResponse
 	 */
 	public function GetCustomClientFields(structures\GetCustomClientFields $parameters) {
-		return $this->__soapCall('GetCustomClientFields', array(
-			$parameters
-		) , array(
-			'uri' => 'http://clients.mindbodyonline.com/api/0_5',
-			'soapaction' => ''
-		));
+		return $this->__soapCall('GetCustomClientFields', array($parameters), array(
+					'uri' => 'http://clients.mindbodyonline.com/api/0_5',
+					'soapaction' => ''
+						)
+		);
 	}
+
 	/**
-	 * Gets a list of currently available client indexes.
+	 * Gets a list of currently available client indexes. 
 	 *
 	 * @param GetClientIndexes $parameters
 	 * @return GetClientIndexesResponse
 	 */
 	public function GetClientIndexes(structures\GetClientIndexes $parameters) {
-		return $this->__soapCall('GetClientIndexes', array(
-			$parameters
-		) , array(
-			'uri' => 'http://clients.mindbodyonline.com/api/0_5',
-			'soapaction' => ''
-		));
+		return $this->__soapCall('GetClientIndexes', array($parameters), array(
+					'uri' => 'http://clients.mindbodyonline.com/api/0_5',
+					'soapaction' => ''
+						)
+		);
 	}
+
 	/**
-	 * Get contact logs for a client.
+	 * Get contact logs for a client. 
 	 *
 	 * @param GetClientContactLogs $parameters
 	 * @return GetClientContactLogsResponse
 	 */
 	public function GetClientContactLogs(structures\GetClientContactLogs $parameters) {
-		return $this->__soapCall('GetClientContactLogs', array(
-			$parameters
-		) , array(
-			'uri' => 'http://clients.mindbodyonline.com/api/0_5',
-			'soapaction' => ''
-		));
+		return $this->__soapCall('GetClientContactLogs', array($parameters), array(
+					'uri' => 'http://clients.mindbodyonline.com/api/0_5',
+					'soapaction' => ''
+						)
+		);
 	}
+
 	/**
-	 * Add or update client contact logs.
+	 * Add or update client contact logs. 
 	 *
 	 * @param AddOrUpdateContactLogs $parameters
 	 * @return AddOrUpdateContactLogsResponse
 	 */
 	public function AddOrUpdateContactLogs(structures\AddOrUpdateContactLogs $parameters) {
-		return $this->__soapCall('AddOrUpdateContactLogs', array(
-			$parameters
-		) , array(
-			'uri' => 'http://clients.mindbodyonline.com/api/0_5',
-			'soapaction' => ''
-		));
+		return $this->__soapCall('AddOrUpdateContactLogs', array($parameters), array(
+					'uri' => 'http://clients.mindbodyonline.com/api/0_5',
+					'soapaction' => ''
+						)
+		);
 	}
+
 	/**
-	 * Get contact log types for a client.
+	 * Get contact log types for a client. 
 	 *
 	 * @param GetContactLogTypes $parameters
 	 * @return GetContactLogTypesResponse
 	 */
 	public function GetContactLogTypes(structures\GetContactLogTypes $parameters) {
-		return $this->__soapCall('GetContactLogTypes', array(
-			$parameters
-		) , array(
-			'uri' => 'http://clients.mindbodyonline.com/api/0_5',
-			'soapaction' => ''
-		));
+		return $this->__soapCall('GetContactLogTypes', array($parameters), array(
+					'uri' => 'http://clients.mindbodyonline.com/api/0_5',
+					'soapaction' => ''
+						)
+		);
 	}
+
 	/**
-	 * Upload a client document.
+	 * Upload a client document. 
 	 *
 	 * @param UploadClientDocument $parameters
 	 * @return UploadClientDocumentResponse
 	 */
 	public function UploadClientDocument(structures\UploadClientDocument $parameters) {
-		return $this->__soapCall('UploadClientDocument', array(
-			$parameters
-		) , array(
-			'uri' => 'http://clients.mindbodyonline.com/api/0_5',
-			'soapaction' => ''
-		));
+		return $this->__soapCall('UploadClientDocument', array($parameters), array(
+					'uri' => 'http://clients.mindbodyonline.com/api/0_5',
+					'soapaction' => ''
+						)
+		);
 	}
+
 	/**
-	 * Gets a list of client formula notes.
+	 * Upload a client photo. 
+	 *
+	 * @param UploadClientPhoto $parameters
+	 * @return UploadClientPhotoResponse
+	 */
+	public function UploadClientPhoto(structures\UploadClientPhoto $parameters) {
+		return $this->__soapCall('UploadClientPhoto', array($parameters), array(
+					'uri' => 'http://clients.mindbodyonline.com/api/0_5',
+					'soapaction' => ''
+						)
+		);
+	}
+
+	/**
+	 * Gets a list of client formula notes. 
 	 *
 	 * @param GetClientFormulaNotes $parameters
 	 * @return GetClientFormulaNotesResponse
 	 */
 	public function GetClientFormulaNotes(structures\GetClientFormulaNotes $parameters) {
-		return $this->__soapCall('GetClientFormulaNotes', array(
-			$parameters
-		) , array(
-			'uri' => 'http://clients.mindbodyonline.com/api/0_5',
-			'soapaction' => ''
-		));
+		return $this->__soapCall('GetClientFormulaNotes', array($parameters), array(
+					'uri' => 'http://clients.mindbodyonline.com/api/0_5',
+					'soapaction' => ''
+						)
+		);
 	}
+
 	/**
-	 * Adds a formula note to a client.
+	 * Adds a formula note to a client. 
 	 *
 	 * @param AddClientFormulaNote $parameters
 	 * @return AddClientFormulaNoteResponse
 	 */
 	public function AddClientFormulaNote(structures\AddClientFormulaNote $parameters) {
-		return $this->__soapCall('AddClientFormulaNote', array(
-			$parameters
-		) , array(
-			'uri' => 'http://clients.mindbodyonline.com/api/0_5',
-			'soapaction' => ''
-		));
+		return $this->__soapCall('AddClientFormulaNote', array($parameters), array(
+					'uri' => 'http://clients.mindbodyonline.com/api/0_5',
+					'soapaction' => ''
+						)
+		);
 	}
+
 	/**
-	 * Deletes a formula note to a client.
+	 * Deletes a formula note to a client. 
 	 *
 	 * @param DeleteClientFormulaNote $parameters
 	 * @return DeleteClientFormulaNoteResponse
 	 */
 	public function DeleteClientFormulaNote(structures\DeleteClientFormulaNote $parameters) {
-		return $this->__soapCall('DeleteClientFormulaNote', array(
-			$parameters
-		) , array(
-			'uri' => 'http://clients.mindbodyonline.com/api/0_5',
-			'soapaction' => ''
-		));
+		return $this->__soapCall('DeleteClientFormulaNote', array($parameters), array(
+					'uri' => 'http://clients.mindbodyonline.com/api/0_5',
+					'soapaction' => ''
+						)
+		);
 	}
+
 	/**
-	 * Gets a list of clients.
+	 * Gets a list of clients. 
 	 *
 	 * @param GetClientReferralTypes $parameters
 	 * @return GetClientReferralTypesResponse
 	 */
 	public function GetClientReferralTypes(structures\GetClientReferralTypes $parameters) {
-		return $this->__soapCall('GetClientReferralTypes', array(
-			$parameters
-		) , array(
-			'uri' => 'http://clients.mindbodyonline.com/api/0_5',
-			'soapaction' => ''
-		));
+		return $this->__soapCall('GetClientReferralTypes', array($parameters), array(
+					'uri' => 'http://clients.mindbodyonline.com/api/0_5',
+					'soapaction' => ''
+						)
+		);
 	}
+
 	/**
-	 * Gets the active membership for a given client.
+	 * Gets the active membership for a given client. 
 	 *
 	 * @param GetActiveClientMemberships $parameters
 	 * @return GetActiveClientMembershipsResponse
 	 */
 	public function GetActiveClientMemberships(structures\GetActiveClientMemberships $parameters) {
-		return $this->__soapCall('GetActiveClientMemberships', array(
-			$parameters
-		) , array(
-			'uri' => 'http://clients.mindbodyonline.com/api/0_5',
-			'soapaction' => ''
-		));
+		return $this->__soapCall('GetActiveClientMemberships', array($parameters), array(
+					'uri' => 'http://clients.mindbodyonline.com/api/0_5',
+					'soapaction' => ''
+						)
+		);
 	}
+
 	/**
-	 * Gets a list of contracts for a given client.
+	 * Gets a list of contracts for a given client. 
 	 *
 	 * @param GetClientContracts $parameters
 	 * @return GetClientContractsResponse
 	 */
 	public function GetClientContracts(structures\GetClientContracts $parameters) {
-		return $this->__soapCall('GetClientContracts', array(
-			$parameters
-		) , array(
-			'uri' => 'http://clients.mindbodyonline.com/api/0_5',
-			'soapaction' => ''
-		));
+		return $this->__soapCall('GetClientContracts', array($parameters), array(
+					'uri' => 'http://clients.mindbodyonline.com/api/0_5',
+					'soapaction' => ''
+						)
+		);
 	}
+
 	/**
-	 * Gets account balances for the given clients.
+	 * Gets account balances for the given clients. 
 	 *
 	 * @param GetClientAccountBalances $parameters
 	 * @return GetClientAccountBalancesResponse
 	 */
 	public function GetClientAccountBalances(structures\GetClientAccountBalances $parameters) {
-		return $this->__soapCall('GetClientAccountBalances', array(
-			$parameters
-		) , array(
-			'uri' => 'http://clients.mindbodyonline.com/api/0_5',
-			'soapaction' => ''
-		));
+		return $this->__soapCall('GetClientAccountBalances', array($parameters), array(
+					'uri' => 'http://clients.mindbodyonline.com/api/0_5',
+					'soapaction' => ''
+						)
+		);
 	}
+
 	/**
-	 * Gets a client service for a given client.
+	 * Gets a client service for a given client. 
 	 *
 	 * @param GetClientServices $parameters
 	 * @return GetClientServicesResponse
 	 */
 	public function GetClientServices(structures\GetClientServices $parameters) {
-		return $this->__soapCall('GetClientServices', array(
-			$parameters
-		) , array(
-			'uri' => 'http://clients.mindbodyonline.com/api/0_5',
-			'soapaction' => ''
-		));
+		return $this->__soapCall('GetClientServices', array($parameters), array(
+					'uri' => 'http://clients.mindbodyonline.com/api/0_5',
+					'soapaction' => ''
+						)
+		);
 	}
+
 	/**
-	 * Get visits for a client.
+	 * Get visits for a client. 
 	 *
 	 * @param GetClientVisits $parameters
 	 * @return GetClientVisitsResponse
 	 */
 	public function GetClientVisits(structures\GetClientVisits $parameters) {
-		return $this->__soapCall('GetClientVisits', array(
-			$parameters
-		) , array(
-			'uri' => 'http://clients.mindbodyonline.com/api/0_5',
-			'soapaction' => ''
-		));
+		return $this->__soapCall('GetClientVisits', array($parameters), array(
+					'uri' => 'http://clients.mindbodyonline.com/api/0_5',
+					'soapaction' => ''
+						)
+		);
 	}
+
 	/**
-	 * Get purchases for a client.
+	 * Get purchases for a client. 
 	 *
 	 * @param GetClientPurchases $parameters
 	 * @return GetClientPurchasesResponse
 	 */
 	public function GetClientPurchases(structures\GetClientPurchases $parameters) {
-		return $this->__soapCall('GetClientPurchases', array(
-			$parameters
-		) , array(
-			'uri' => 'http://clients.mindbodyonline.com/api/0_5',
-			'soapaction' => ''
-		));
+		return $this->__soapCall('GetClientPurchases', array($parameters), array(
+					'uri' => 'http://clients.mindbodyonline.com/api/0_5',
+					'soapaction' => ''
+						)
+		);
 	}
+
 	/**
-	 * Get visits for a client.
+	 * Get visits for a client. 
 	 *
 	 * @param GetClientSchedule $parameters
 	 * @return GetClientScheduleResponse
 	 */
 	public function GetClientSchedule(structures\GetClientSchedule $parameters) {
-		return $this->__soapCall('GetClientSchedule', array(
-			$parameters
-		) , array(
-			'uri' => 'http://clients.mindbodyonline.com/api/0_5',
-			'soapaction' => ''
-		));
+		return $this->__soapCall('GetClientSchedule', array($parameters), array(
+					'uri' => 'http://clients.mindbodyonline.com/api/0_5',
+					'soapaction' => ''
+						)
+		);
 	}
+
 	/**
-	 * Updates a client service for a given client.
+	 * Updates a client service for a given client. 
 	 *
 	 * @param GetRequiredClientFields $parameters
 	 * @return GetRequiredClientFieldsResponse
 	 */
 	public function GetRequiredClientFields(structures\GetRequiredClientFields $parameters) {
-		return $this->__soapCall('GetRequiredClientFields', array(
-			$parameters
-		) , array(
-			'uri' => 'http://clients.mindbodyonline.com/api/0_5',
-			'soapaction' => ''
-		));
+		return $this->__soapCall('GetRequiredClientFields', array($parameters), array(
+					'uri' => 'http://clients.mindbodyonline.com/api/0_5',
+					'soapaction' => ''
+						)
+		);
 	}
+
 	/**
-	 * Validates a username and password. This method returns the associated clients record and
-	 * a session guid on success.
+	 * Validates a username and password. This method returns the associated clients record and 
+	 * a session GUID on success. 
 	 *
 	 * @param ValidateLogin $parameters
 	 * @return ValidateLoginResponse
 	 */
 	public function ValidateLogin(structures\ValidateLogin $parameters) {
-		return $this->__soapCall('ValidateLogin', array(
-			$parameters
-		) , array(
-			'uri' => 'http://clients.mindbodyonline.com/api/0_5',
-			'soapaction' => ''
-		));
+		return $this->__soapCall('ValidateLogin', array($parameters), array(
+					'uri' => 'http://clients.mindbodyonline.com/api/0_5',
+					'soapaction' => ''
+						)
+		);
 	}
+
 	/**
-	 * Updates a client service for a given client.
+	 * Updates a client service for a given client. 
 	 *
 	 * @param UpdateClientServices $parameters
 	 * @return UpdateClientServicesResponse
 	 */
 	public function UpdateClientServices(structures\UpdateClientServices $parameters) {
-		return $this->__soapCall('UpdateClientServices', array(
-			$parameters
-		) , array(
-			'uri' => 'http://clients.mindbodyonline.com/api/0_5',
-			'soapaction' => ''
-		));
+		return $this->__soapCall('UpdateClientServices', array($parameters), array(
+					'uri' => 'http://clients.mindbodyonline.com/api/0_5',
+					'soapaction' => ''
+						)
+		);
 	}
+
 	/**
-	 * Sends the user a new password.
+	 * Sends the user a new password. 
 	 *
 	 * @param SendUserNewPassword $parameters
 	 * @return SendUserNewPasswordResponse
 	 */
 	public function SendUserNewPassword(structures\SendUserNewPassword $parameters) {
-		return $this->__soapCall('SendUserNewPassword', array(
-			$parameters
-		) , array(
-			'uri' => 'http://clients.mindbodyonline.com/api/0_5',
-			'soapaction' => ''
-		));
+		return $this->__soapCall('SendUserNewPassword', array($parameters), array(
+					'uri' => 'http://clients.mindbodyonline.com/api/0_5',
+					'soapaction' => ''
+						)
+		);
 	}
+
+	/**
+	 * Gets relationships for a specific client 
+	 *
+	 * @param GetClientRelationships $parameters
+	 * @return GetClientRelationshipsResponse
+	 */
+	public function GetClientRelationships(structures\GetClientRelationships $parameters) {
+		return $this->__soapCall('GetClientRelationships', array($parameters), array(
+					'uri' => 'http://clients.mindbodyonline.com/api/0_5',
+					'soapaction' => ''
+						)
+		);
+	}
+
+	/**
+	 * Adds relationships for a specific client 
+	 *
+	 * @param AddClientRelationships $parameters
+	 * @return AddClientRelationshipsResponse
+	 */
+	public function AddClientRelationships(structures\AddClientRelationships $parameters) {
+		return $this->__soapCall('AddClientRelationships', array($parameters), array(
+					'uri' => 'http://clients.mindbodyonline.com/api/0_5',
+					'soapaction' => ''
+						)
+		);
+	}
+
+	/**
+	 * Deletes specified relationships for a specific client 
+	 *
+	 * @param DeleteClientRelationships $parameters
+	 * @return DeleteClientRelationshipsResponse
+	 */
+	public function DeleteClientRelationships(structures\DeleteClientRelationships $parameters) {
+		return $this->__soapCall('DeleteClientRelationships', array($parameters), array(
+					'uri' => 'http://clients.mindbodyonline.com/api/0_5',
+					'soapaction' => ''
+						)
+		);
+	}
+
 }
-?>

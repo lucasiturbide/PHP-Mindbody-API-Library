@@ -1,6 +1,9 @@
 <?php
+
 namespace MindbodyAPI\structures;
+
 class ClassSchedule {
+
 	public $Classes; // ArrayOfClass
 	public $Clients; // ArrayOfClient
 	public $Course; // Course
@@ -16,12 +19,15 @@ class ClassSchedule {
 	public $DayThursday; // boolean
 	public $DayFriday; // boolean
 	public $DaySaturday; // boolean
+	public $AllowOpenEnrollment; // boolean
+	public $AllowDateForwardEnrollment; // boolean
 	public $StartTime; // dateTime
 	public $EndTime; // dateTime
 	public $StartDate; // dateTime
 	public $EndDate; // dateTime
 	public $Staff; // Staff
 	public $Location; // Location
-	
+
 }
+
 ?>

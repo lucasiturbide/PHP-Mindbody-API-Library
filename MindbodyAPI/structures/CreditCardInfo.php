@@ -1,6 +1,9 @@
 <?php
+
 namespace MindbodyAPI\structures;
+
 class CreditCardInfo {
+
 	public $CVV; // string
 	public $Action; // ActionCode
 	public $CreditCardNumber; // string
@@ -13,6 +16,7 @@ class CreditCardInfo {
 	public $BillingState; // string
 	public $BillingPostalCode; // string
 	public $SaveInfo; // boolean
-	
+
 }
+
 ?>

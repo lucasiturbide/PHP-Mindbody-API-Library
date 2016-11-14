@@ -14,17 +14,19 @@ class MindbodyClient extends \SoapClient {
 		$requestName = "MindbodyAPI\\structures\\{$type}";
 		$requestRequestName = "{$requestName}Request";
 	
-		if(!class_exists($requestName) || !class_exists($requestRequestName)) return false;
+		if(!class_exists($requestName) || !class_exists($requestRequestName)){
+			return false;
+		}
 		$request = new $requestName;
 		$request->Request = new $requestRequestName;
-		if($sourceCredentials)
+		if($sourceCredentials){
 			$request->Request->SourceCredentials = $sourceCredentials;
-		else
+		} else {
 			$request->Request->SourceCredentials = new structures\SourceCredentials();
-		
-		if($userCredentials)
+		}
+		if($userCredentials){
 			$request->Request->UserCredentials = $userCredentials;
-		
+		}
 		return $request;
 	}
 	
@@ -47,19 +49,23 @@ class MindbodyClient extends \SoapClient {
 	}
 	
 	public static function structure($type, $propMap = null) {
-		if($propMap && !(is_array($propMap) || is_object($propMap)))
+		if($propMap && !(is_array($propMap) || is_object($propMap))){
 			throw new UnexpectedValueException("\$propMap must be an array or an object");
+		}
 	
 		if(isset(static::$classmap[$type])) {
 			$structure = new static::$classmap[$type]();
-			if(!empty($propMap))
+			if(!empty($propMap)){
 				foreach($propMap as $name => $value) {
-					if(property_exists($structure, $name))
+					if(property_exists($structure, $name)){
 						$structure->$name = $value;
+					}
 				}
+			}
 			return $structure;
-		} else
+		} else{
 			throw new UnexpectedValueException("{$type} is not a valid type associated with ".get_called_class());
+		}
 	}
 	
 	public function __soapCall($function_name, $arguments, $options = array(), $input_headers = array(), &$output_headers = array()) {
@@ -67,8 +73,9 @@ class MindbodyClient extends \SoapClient {
 		
 		$expectedResultType = "{$function_name}Result";
 		
-		if(isset($result->$expectedResultType))
+		if(isset($result->$expectedResultType)){
 			return $result->$expectedResultType;
+		}
 		
 		return $result;
 	}

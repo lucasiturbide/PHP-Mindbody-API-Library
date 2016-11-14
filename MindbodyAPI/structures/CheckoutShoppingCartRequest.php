@@ -1,6 +1,9 @@
 <?php
+
 namespace MindbodyAPI\structures;
+
 class CheckoutShoppingCartRequest {
+
 	public $CartID; // string
 	public $ClientID; // string
 	public $Test; // boolean
@@ -12,6 +15,7 @@ class CheckoutShoppingCartRequest {
 	public $LocationID; // int
 	public $Image; // base64Binary
 	public $ImageFileName; // string
-	
+
 }
+
 ?>
